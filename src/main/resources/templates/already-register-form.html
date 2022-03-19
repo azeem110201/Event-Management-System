@@ -10,12 +10,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>Registered Event</title>
+    <title>Save Employee</title>
 </head>
 <body>
-<h1>
-    Registered for this event
-</h1>
+<p th:text="${event}" />
 <hr>
 <a th:href="@{/api/events/list}">Back to Event List</a>
 </body>

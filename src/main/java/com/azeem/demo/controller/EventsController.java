@@ -92,7 +92,11 @@ public class EventsController {
                 eventsService.saveEvent(theEvent);
             }
             else{
-                // user has already registered for the event
+                String alreadyRegistered = username + " has already registered to this event";
+
+                theModel.addAttribute("event", alreadyRegistered);
+
+                return "already-register-form";
             }
             usersList = theEvent.getUsersList();
 
