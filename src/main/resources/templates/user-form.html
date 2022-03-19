@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymleaf-extras-springsecurity5">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save User</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>Users Directory</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save User</p>
+
+    <form action="#" th:action="@{/api/users/save}"
+          th:object="${user}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+
+        <input type="text" th:field="*{username}"
+               class="form-control mb-4 col-4" placeholder="username">
+
+        <input type="text" th:field="*{password}"
+               class="form-control mb-4 col-4" placeholder="password">
+
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 col-4" placeholder="First Name">
+
+        <input type="text" th:field="*{lastName}"
+               class="form-control mb-4 col-4" placeholder="Last Name">
+
+        <input type="text" th:field="*{age}"
+               class="form-control mb-4 col-4" placeholder="Age">
+
+        <input type="text" th:field="*{gender}"
+               class="form-control mb-4 col-4" placeholder="Gender">
+
+        <input type="text" th:field="*{branch}"
+               class="form-control mb-4 col-4" placeholder="Branch">
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/api/users/list}">Back to Users List</a>
+
+</div>
+</body>
+
+</html>

@@ -46,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/events/list/*").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/api/events/register/*").hasAnyRole("USER")
                 .antMatchers("/api/events/showFormForUpdate/*", "/api/events/delete/*", "/api/events/showFormForAdd/*").hasRole("ADMIN")
+                .antMatchers("/api/users/showFormForUpdate/*", "/api/users/delete/*", "/api/users/showFormForAdd/*", "/api/users/list/*").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

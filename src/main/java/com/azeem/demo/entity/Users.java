@@ -69,4 +69,12 @@ public class Users {
 
         this.eventsList.add(tempEvent);
     }
+
+    public void addRole(Roles role){
+        if(this.roles == null){
+            this.roles = new HashSet<>();
+        }
+
+        this.roles.add(role);
+    }
 }

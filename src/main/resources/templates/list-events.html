@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>Employee Directory</title>
+    <title>Events Directory</title>
 </head>
 
 <body>
@@ -112,5 +112,20 @@
     </form>
 </div>
 
+<hr>
+
+<div sec:authorize="hasAnyAuthority('USER')">
+    <div class="container my-3">
+        <a th:href="@{/api/profile/user}">See Your profile</a>
+    </div>
+</div>
+
+<hr>
+
+<div sec:authorize="hasAnyAuthority('ADMIN')">
+    <div class="container my-3">
+        <a th:href="@{/api/users/list}">See List of All Users</a>
+    </div>
+</div>
 </body>
 </html>
