@@ -32,31 +32,62 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
+
         return user.getPassword();
     }
 
     @Override
     public String getUsername() {
+
         return user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
+
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
+
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
+
         return true;
     }
 
     @Override
     public boolean isEnabled() {
+
         return true;
+    }
+
+    // adding some methods to get user details
+    public int getUserId(){
+        return user.getId();
+    }
+
+    public String getFirstName(){
+        return user.getFirstName();
+    }
+
+    public String getLastName(){
+        return user.getLastName();
+    }
+
+    public int getAge(){
+        return user.getAge();
+    }
+
+    public char getGender(){
+        return user.getGender();
+    }
+
+    public String getBranch(){
+        return user.getBranch();
     }
 }

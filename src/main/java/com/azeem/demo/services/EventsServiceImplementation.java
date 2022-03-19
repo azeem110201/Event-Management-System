@@ -28,17 +28,17 @@ public class EventsServiceImplementation implements EventsService{
     public Events getEventById(int id) {
         Optional<Events> result = Optional.of(eventsRepository.getById(id));
 
-        Events theEmployee = null;
+        Events theEvent = null;
 
         if (result.isPresent()) {
-            theEmployee = result.get();
+            theEvent = result.get();
         }
         else {
             // we didn't find the employee
             throw new RuntimeException("Did not find event id - " + id);
         }
 
-        return theEmployee;
+        return theEvent;
     }
 
     @Override

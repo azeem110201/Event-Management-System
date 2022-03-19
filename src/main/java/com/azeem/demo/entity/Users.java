@@ -38,6 +38,9 @@ public class Users {
     @Column(name = "age")
     private int age;
 
+    @Column(name = "gender")
+    private char gender;
+
     @Column(name = "branch")
     private String branch;
 
@@ -58,18 +61,6 @@ public class Users {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Roles> roles = new HashSet<>();
-
-//    public Users(String username, String password, String firstName, String lastName, int age, String branch, boolean enabled, List<Events> eventsList, Set<Roles> roles) {
-//        this.username = username;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.age = age;
-//        this.branch = branch;
-//        this.enabled = enabled;
-//        this.eventsList = eventsList;
-//        this.roles = roles;
-//    }
 
     public void addEvent(Events tempEvent){
         if(this.eventsList == null){
