@@ -1,9 +1,6 @@
 package com.azeem.demo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,8 +12,8 @@ import java.util.Set;
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@ToString
+@Setter
+@Getter
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

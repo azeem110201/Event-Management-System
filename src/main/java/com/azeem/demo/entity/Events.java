@@ -1,11 +1,9 @@
 package com.azeem.demo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +11,8 @@ import java.util.List;
 @Table(name = "events")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@ToString
+@Setter
+@Getter
 public class Events {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +20,7 @@ public class Events {
     private int id;
 
     @Column(name = "event_name")
+    @NotNull
     private String eventName;
 
     @Column(name = "event_venue")

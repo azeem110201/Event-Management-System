@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -45,13 +46,13 @@ public class UsersController {
     }
 
     @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute("user") Users users, Model model){
+    public String saveEmployee(@Valid @ModelAttribute("user") Users users, Model model){
         List<Users> allUsers = usersService.listUsers();
 
         boolean flag = false;
 
         for(Users user: allUsers){
-            if(user.getUsername() == users.getUsername()){
+            if(user.getUsername().equals(users.getUsername())){
                 flag = true;
                 break;
             }
@@ -89,6 +90,7 @@ public class UsersController {
 
     @PostMapping("/delete")
     public String delete(@RequestParam("userId") int theId) {
+
         usersService.deleteUser(theId);
 
         return "redirect:/api/users/list";

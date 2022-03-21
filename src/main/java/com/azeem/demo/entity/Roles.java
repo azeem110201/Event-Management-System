@@ -1,9 +1,6 @@
 package com.azeem.demo.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,8 +8,8 @@ import javax.persistence.*;
 @Table(name = "roles")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@ToString
+@Setter
+@Getter
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +18,5 @@ public class Roles {
 
     @Column(name = "name")
     private String roleName;
+
 }
