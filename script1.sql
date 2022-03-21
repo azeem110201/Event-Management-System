@@ -98,6 +98,37 @@ CREATE TABLE IF NOT EXISTS `spring_assignment`.`user_event` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `mydb`.`speakers`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `spring_assignment`.`speakers` (
+  `speaker_id` INT NOT NULL AUTO_INCREMENT,
+  `speaker_name` VARCHAR(45) NOT NULL,
+  `speaker_designation` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`speaker_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`event_speaker`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `spring_assignment`.`event_speaker` (
+  `event_id` INT NOT NULL,
+  `speaker_id` INT NOT NULL,
+  INDEX `fk_event_speaker_1_idx` (`event_id` ASC) VISIBLE,
+  INDEX `fk_event_speaker_2_idx` (`speaker_id` ASC) VISIBLE,
+  CONSTRAINT `fk_event_speaker_1`
+    FOREIGN KEY (`event_id`)
+    REFERENCES `spring_assignment`.`events` (`event_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_speaker_2`
+    FOREIGN KEY (`speaker_id`)
+    REFERENCES `spring_assignment`.`speakers` (`speaker_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

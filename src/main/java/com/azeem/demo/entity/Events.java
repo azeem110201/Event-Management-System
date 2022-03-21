@@ -34,11 +34,12 @@ public class Events {
     )
     private List<Users> usersList;
 
-//    public Events(String eventName, String eventVenue, List<Users> usersList) {
-//        this.eventName = eventName;
-//        this.eventVenue = eventVenue;
-//        this.usersList = usersList;
-//    }
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name = "event_speaker",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "speaker_id")
+    )
+    private List<Speakers> speakersList;
 
     public void addUser(Users tempUser){
         if(this.usersList == null){
@@ -46,5 +47,13 @@ public class Events {
         }
 
         this.usersList.add(tempUser);
+    }
+
+    public void addSpeaker(Speakers speaker){
+        if(this.speakersList == null){
+            this.speakersList = new ArrayList<>();
+        }
+
+        this.speakersList.add(speaker);
     }
 }

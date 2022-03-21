@@ -10,11 +10,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <title>Event Already Registered</title>
+    <title>User Already Registered</title>
 </head>
 <body>
-<p th:text="${event}" />
+<p th:text="${speaker}" />
 <hr>
-<a th:href="@{/api/events/list}">Back to Event List</a>
+<a th:href="@{/api/speakers/list}">Back to Speakers List</a>
 </body>
 </html>

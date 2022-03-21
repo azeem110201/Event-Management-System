@@ -19,6 +19,8 @@ public class EventsController {
     private EventsService eventsService;
     private UsersServiceInterface usersService;
 
+    public static int eventIdToSpeaker;
+
     @Autowired
     public EventsController(EventsService eventsService,
                             UsersServiceInterface usersService){
@@ -98,11 +100,6 @@ public class EventsController {
 
                 return "already-register-form";
             }
-            usersList = theEvent.getUsersList();
-
-            for(Users user: usersList){
-                System.out.println(user.getUsername());
-            }
         }
 
         theModel.addAttribute("event", theEvent);
@@ -116,5 +113,21 @@ public class EventsController {
 
         return "redirect:/api/events/list";
 
+    }
+
+    @PostMapping("/eventDetails")
+    public String eventDetails(@RequestParam("eventId") int theId,
+                               Model theModel){
+
+        Events theEvent = eventsService.getEventById(theId);
+
+        eventIdToSpeaker = theId;
+
+        theModel.addAttribute("event", theEvent);
+        return "event-details";
+    }
+
+    public static int passEventIdToSpeaker(){
+        return eventIdToSpeaker;
     }
 }

@@ -2,18 +2,15 @@ package com.azeem.demo.controller;
 
 import com.azeem.demo.entity.Roles;
 import com.azeem.demo.entity.Users;
-import com.azeem.demo.repository.MyUserDetails;
 import com.azeem.demo.services.RoleService;
 import com.azeem.demo.services.UsersServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/api/users")
@@ -47,7 +44,26 @@ public class UsersController {
     }
 
     @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute("user") Users users){
+    public String saveEmployee(@ModelAttribute("user") Users users, Model model){
+        List<Users> allUsers = usersService.listUsers();
+
+        boolean flag = false;
+
+        for(Users user: allUsers){
+            if(user.getUsername() == users.getUsername()){
+                flag = true;
+                break;
+            }
+        }
+
+        if(flag){
+            String alreadyRegistered = users.getUsername() + " has already registered";
+
+            model.addAttribute("user", alreadyRegistered);
+
+            return "already-register-user";
+        }
+
         Roles userRole = roleService.getRoleById(2);
         users.addRole(userRole);
 
