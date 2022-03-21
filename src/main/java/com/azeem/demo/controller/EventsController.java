@@ -19,7 +19,7 @@ public class EventsController {
     private EventsService eventsService;
     private UsersServiceInterface usersService;
 
-    public static int eventIdToSpeaker;
+    private static int eventIdToSpeaker;
 
     @Autowired
     public EventsController(EventsService eventsService,

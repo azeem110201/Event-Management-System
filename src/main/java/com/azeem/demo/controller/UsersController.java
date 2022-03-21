@@ -1,5 +1,6 @@
 package com.azeem.demo.controller;
 
+import com.azeem.demo.dto.UsersDTO;
 import com.azeem.demo.entity.Roles;
 import com.azeem.demo.entity.Users;
 import com.azeem.demo.services.RoleService;
@@ -27,7 +28,7 @@ public class UsersController {
 
     @GetMapping("/list")
     public String listUsers(Model model){
-        List<Users> users = usersService.listUsers();
+        List<UsersDTO> users = usersService.getAllUsers();
 
         model.addAttribute("user", users);
 
