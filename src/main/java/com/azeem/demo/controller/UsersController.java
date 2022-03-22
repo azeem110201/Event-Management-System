@@ -5,12 +5,15 @@ import com.azeem.demo.entity.Roles;
 import com.azeem.demo.entity.Users;
 import com.azeem.demo.services.RoleService;
 import com.azeem.demo.services.UsersServiceInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,6 +23,8 @@ import java.util.List;
 public class UsersController {
     private UsersServiceInterface usersService;
     private RoleService roleService;
+
+    private final static Logger logger = LoggerFactory.getLogger(EventsController.class);
 
     @Autowired
     public UsersController(UsersServiceInterface usersService, RoleService roleService){
@@ -47,8 +52,8 @@ public class UsersController {
     }
 
     @PostMapping("/save")
-    public String saveUser(@Valid @ModelAttribute("user") Users users, Model model,
-                               BindingResult bindingResult){
+    public String saveUser(@Valid @ModelAttribute("user") Users users,
+                               BindingResult bindingResult, RedirectAttributes redirAttrs){
 
         if(bindingResult.hasErrors()){
             return "user-form";
@@ -66,11 +71,10 @@ public class UsersController {
         }
 
         if(flag){
-            String alreadyRegistered = users.getUsername() + " has already registered";
+            logger.warn(">>>>>> user already registered in the database!!");
 
-            model.addAttribute("user", alreadyRegistered);
-
-            return "already-register-user";
+            redirAttrs.addFlashAttribute("error", users.getUsername() + " has already registered");
+            return "redirect:/api/users/showFormForAdd";
         }
 
         Roles userRole = roleService.getRoleById(2);
@@ -80,6 +84,10 @@ public class UsersController {
         users.setPassword(bcrypt.encode(users.getPassword()));
 
         usersService.saveUser(users);
+
+        logger.debug(">>>>>>> user registered in the database");
+
+        redirAttrs.addFlashAttribute("success", "User Registered");
 
         return "redirect:/api/users/list";
     }
@@ -97,6 +105,9 @@ public class UsersController {
 
     @PostMapping("/delete")
     public String delete(@RequestParam("userId") int theId) {
+
+        Users user = usersService.getUserById(theId);
+        user.setRoles(null);
 
         usersService.deleteUser(theId);
 

@@ -132,12 +132,6 @@
 
 <hr>
 
-<div sec:authorize="hasAnyAuthority('USER')">
-    <div class="container my-3">
-        <a th:href="@{/api/profile/user}">See Your profile</a>
-    </div>
-</div>
-
 <hr>
 
 <div sec:authorize="hasAnyAuthority('ADMIN')">

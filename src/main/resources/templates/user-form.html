@@ -10,6 +10,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
+    <style>
+        .error {
+           color: red;
+        }
+    </style>
+
     <title>Save User</title>
 </head>
 
@@ -35,31 +41,45 @@
 
         <input type="text" th:field="*{username}"
                class="form-control mb-4 col-4" placeholder="username">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('username')}" th:text="${err}" class="error" />
+        </ul>
 
         <input type="text" th:field="*{password}"
                class="form-control mb-4 col-4" placeholder="password">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error" />
+        </ul>
 
         <input type="text" th:field="*{firstName}"
                class="form-control mb-4 col-4" placeholder="First Name">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}" class="error" />
+        </ul>
 
         <input type="text" th:field="*{lastName}"
                class="form-control mb-4 col-4" placeholder="Last Name">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}" class="error" />
+        </ul>
 
         <input type="text" th:field="*{age}"
                class="form-control mb-4 col-4" placeholder="Age">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('age')}" th:text="${err}" class="error" />
+        </ul>
 
         <input type="text" th:field="*{gender}"
                class="form-control mb-4 col-4" placeholder="Gender">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('gender')}" th:text="${err}" class="error" />
+        </ul>
 
         <input type="text" th:field="*{branch}"
                class="form-control mb-4 col-4" placeholder="Branch">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('branch')}" th:errors="*{branch}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('branch')}" th:text="${err}" class="error" />
+        </ul>
 
         <button type="submit" class="btn btn-info col-2">Save</button>
 

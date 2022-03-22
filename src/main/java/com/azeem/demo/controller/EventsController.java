@@ -118,14 +118,14 @@ public class EventsController {
                 eventsService.saveEvent(theEvent);
             }
             else{
-                logger.warn(">>>>>> user already registered in the database!!");
+                logger.warn(">>>>>> event already registered in the database!!");
 
                 redirAttrs.addFlashAttribute("error", username + " has already registered to this event");
                 return "redirect:/api/events/list";
             }
         }
 
-        logger.debug(">>>>>>> user registered in the database");
+        logger.debug(">>>>>>> event registered in the database");
 
         theModel.addAttribute("event", theEvent);
 
