@@ -30,9 +30,11 @@
 
         <input type="text" th:field="*{eventName}"
                class="form-control mb-4 col-4" placeholder="Event name">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}"></div>
 
         <input type="text" th:field="*{eventVenue}"
                class="form-control mb-4 col-4" placeholder="Event venue">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('eventVenue')}" th:errors="*{eventVenue}"></div>
 
         <button type="submit" class="btn btn-info col-2">Save</button>
 

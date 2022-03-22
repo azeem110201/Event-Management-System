@@ -3,6 +3,10 @@ package com.azeem.demo.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,24 +25,39 @@ public class Users {
     private int id;
 
     @Column(name = "username")
+    @NotNull(message="is required")
+    @Size(min=3, message="should have 3 or more characters")
     private String username;
 
     @Column(name = "password")
+    @NotNull(message="is required")
+    @Size(min=6, message="should have 6 or more characters")
     private String password;
 
     @Column(name = "first_name")
+    @NotNull(message="is required")
+    @Size(min=3, message="should have 3 or more characters")
     private String firstName;
 
     @Column(name = "last_name")
+    @NotNull(message="is required")
+    @Size(min=3, message="should have 3 or more characters")
     private String lastName;
 
     @Column(name = "age")
+    @NotNull(message="is required")
+    @Min(value=0, message = "Must be greater than or equal to 0")
+    @Max(value=130, message = "Must not be greater than 130")
     private int age;
 
     @Column(name = "gender")
-    private char gender;
+    @NotNull(message="is required")
+    @Size(max=1, message="write M for male and F for female")
+    private String gender;
 
     @Column(name = "branch")
+    @NotNull(message="is required")
+    @Size(min=2, max = 5, message="should have 2-5 characters")
     private String branch;
 
     @Column(name = "enabled")

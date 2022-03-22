@@ -83,7 +83,7 @@ public class MyUserDetails implements UserDetails {
         return user.getAge();
     }
 
-    public char getGender(){
+    public String getGender(){
         return user.getGender();
     }
 

@@ -17,7 +17,7 @@ public class UsersDTO {
     private String firstName;
     private String lastName;
     private int age;
-    private char gender;
+    private String gender;
     private String branch;
     private List<Events> eventsList;
     private Set<Roles> roles;

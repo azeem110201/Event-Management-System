@@ -4,6 +4,8 @@ package com.azeem.demo.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -19,9 +21,13 @@ public class Speakers {
     private int id;
 
     @Column(name = "speaker_name")
+    @NotNull(message="is required")
+    @Size(min=3, message="should have 3 or more characters")
     private String speakerName;
 
     @Column(name = "speaker_designation")
+    @NotNull(message="is required")
+    @Size(min=10, message="should have 10 or more characters")
     private String speakerDesignation;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})

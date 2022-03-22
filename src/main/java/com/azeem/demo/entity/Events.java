@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +21,13 @@ public class Events {
     private int id;
 
     @Column(name = "event_name")
-    @NotNull
+    @NotNull(message="is required")
+    @Size(min=5, message="should have 5 or more characters")
     private String eventName;
 
     @Column(name = "event_venue")
+    @NotNull(message="is required")
+    @Size(min=3, message="should have 3 or more characters")
     private String eventVenue;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})

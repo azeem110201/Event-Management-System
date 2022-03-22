@@ -1,16 +1,21 @@
 package com.azeem.demo.controller;
 
+import com.azeem.demo.dto.EventsDTO;
 import com.azeem.demo.entity.Events;
 import com.azeem.demo.entity.Users;
 import com.azeem.demo.repository.MyUserDetails;
 import com.azeem.demo.services.EventsService;
 import com.azeem.demo.services.UsersServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -29,9 +34,17 @@ public class EventsController {
         this.usersService = usersService;
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder webDataBinder){
+        StringTrimmerEditor trimSpaces = new StringTrimmerEditor(true);
+
+        webDataBinder.registerCustomEditor(String.class, trimSpaces);
+    }
+
     @GetMapping("/list")
     public String listEvents(Model model){
-        List<Events> events = eventsService.listEvents();
+//        List<Events> events = eventsService.listEvents();
+        List<EventsDTO> events = eventsService.getAllEvents();
 
         model.addAttribute("event", events);
 
@@ -48,7 +61,13 @@ public class EventsController {
     }
 
     @PostMapping("/save")
-    public String saveEmployee(@ModelAttribute("event") Events event){
+    public String saveEmployee(@Valid @ModelAttribute("event") Events event,
+                               BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "event-form";
+        }
+
         eventsService.saveEvent(event);
 
         return "redirect:/api/events/list";

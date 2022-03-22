@@ -30,9 +30,11 @@
 
         <input type="text" th:field="*{speakerName}"
                class="form-control mb-4 col-4" placeholder="Speaker name">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('speakerName')}" th:errors="*{speakerName}"></div>
 
         <input type="text" th:field="*{speakerDesignation}"
                class="form-control mb-4 col-4" placeholder="Speaker Designation">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('speakerDesignation')}" th:errors="*{speakerDesignation}"></div>
 
         <button type="submit" class="btn btn-info col-2">Save</button>
 
