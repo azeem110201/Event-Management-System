@@ -35,7 +35,7 @@ public class SpeakerController {
 
         List<Speakers> newSpeakersList = new ArrayList<>();
 
-        if(!(speakers == null)){
+        if(speakers != null){
             for(Speakers speaker: speakers){
                 List<Events> eventSpeakers = speaker.getEventsList();
                 for(Events eventSpeaker: eventSpeakers){

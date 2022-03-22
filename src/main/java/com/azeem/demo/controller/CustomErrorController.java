@@ -36,8 +36,4 @@ public class CustomErrorController implements ErrorController {
 
         return errorPage;
     }
-
-    public String getErrorPath() {
-        return "/error";
-    }
 }

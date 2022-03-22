@@ -30,17 +30,17 @@ public class EventsServiceImplementation implements EventsService{
     public Events getEventById(int id) {
         Optional<Events> result = Optional.of(eventsRepository.getById(id));
 
-        Events theEvent = null;
+//        Events theEvent = null;
 
-        if (result.isPresent()) {
-            theEvent = result.get();
-        }
-        else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find event id - " + id);
-        }
+//        if (result.isPresent()) {
+//            theEvent = result.get();
+//        }
+//        else {
+//            // we didn't find the employee
+//            throw new RuntimeException("Did not find event id - " + id);
+//        }
 
-        return theEvent;
+        return result.get();
     }
 
     @Override
@@ -71,13 +71,5 @@ public class EventsServiceImplementation implements EventsService{
         EventsDTO eventsDTO;
         eventsDTO = modelMapper.map(events, EventsDTO.class);
         return eventsDTO;
-    }
-
-    private Events convertDtoToEntity(EventsDTO eventsDTO){
-        modelMapper.getConfiguration()
-                .setMatchingStrategy(MatchingStrategies.LOOSE);
-        Events events;
-        events = modelMapper.map(eventsDTO, Events.class);
-        return events;
     }
 }

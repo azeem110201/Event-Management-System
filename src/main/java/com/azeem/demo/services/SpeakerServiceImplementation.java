@@ -1,9 +1,7 @@
 package com.azeem.demo.services;
 
 import com.azeem.demo.dto.SpeakersDTO;
-import com.azeem.demo.dto.UsersDTO;
 import com.azeem.demo.entity.Speakers;
-import com.azeem.demo.entity.Users;
 import com.azeem.demo.repository.SpeakersRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -71,13 +69,5 @@ public class SpeakerServiceImplementation implements SpeakerService{
         SpeakersDTO speakersDTO;
         speakersDTO = modelMapper.map(speakers, SpeakersDTO.class);
         return speakersDTO;
-    }
-
-    private Speakers convertDtoToEntity(SpeakersDTO speakersDTO){
-        modelMapper.getConfiguration()
-                .setMatchingStrategy(MatchingStrategies.LOOSE);
-        Speakers speakers;
-        speakers = modelMapper.map(speakersDTO, Speakers.class);
-        return speakers;
     }
 }

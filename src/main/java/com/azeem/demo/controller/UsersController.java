@@ -24,7 +24,7 @@ public class UsersController {
     private UsersServiceInterface usersService;
     private RoleService roleService;
 
-    private final static Logger logger = LoggerFactory.getLogger(EventsController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
 
     @Autowired
     public UsersController(UsersServiceInterface usersService, RoleService roleService){

@@ -27,7 +27,7 @@ public class EventsController {
     private EventsService eventsService;
     private UsersServiceInterface usersService;
 
-    private final static Logger logger = LoggerFactory.getLogger(EventsController.class);
+    private static final Logger logger = LoggerFactory.getLogger(EventsController.class);
 
     private static int eventIdToSpeaker;
 
@@ -48,7 +48,6 @@ public class EventsController {
 
     @GetMapping("/list")
     public String listEvents(Model model){
-//        List<Events> events = eventsService.listEvents();
         List<EventsDTO> events = eventsService.getAllEvents();
 
         model.addAttribute("event", events);
@@ -94,7 +93,6 @@ public class EventsController {
                                    Model theModel, RedirectAttributes redirAttrs) {
 
         Events theEvent = eventsService.getEventById(theId);
-        System.out.println(theEvent.getEventName());
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if(principal instanceof MyUserDetails){

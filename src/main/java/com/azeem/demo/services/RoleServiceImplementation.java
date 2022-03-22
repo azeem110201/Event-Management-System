@@ -1,7 +1,6 @@
 package com.azeem.demo.services;
 
 import com.azeem.demo.entity.Roles;
-import com.azeem.demo.entity.Users;
 import com.azeem.demo.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
