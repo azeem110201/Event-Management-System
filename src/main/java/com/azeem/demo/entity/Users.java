@@ -18,6 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,6 +78,16 @@ public class Users {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Roles> roles = new HashSet<>();
+
+    public Users(String username, String password, String firstName, String lastName, int age, String gender, String branch) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.gender = gender;
+        this.branch = branch;
+    }
 
     public void addEvent(Events tempEvent){
         if(this.eventsList == null){

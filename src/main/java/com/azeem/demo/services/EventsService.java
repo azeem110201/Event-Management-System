@@ -8,7 +8,7 @@ import java.util.List;
 public interface EventsService {
     List<Events> listEvents();
     Events getEventById(int id);
-    void saveEvent(Events event);
+    Events saveEvent(Events event);
     void deleteEvent(int id);
     List<EventsDTO> getAllEvents();
 }

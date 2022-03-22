@@ -44,6 +44,11 @@ public class Events {
     )
     private List<Speakers> speakersList;
 
+    public Events(String eventName, String eventVenue) {
+        this.eventName = eventName;
+        this.eventVenue = eventVenue;
+    }
+
     public void addUser(Users tempUser){
         if(this.usersList == null){
             this.usersList = new ArrayList<>();

@@ -46,8 +46,10 @@ public class SpeakerServiceImplementation implements SpeakerService{
     }
 
     @Override
-    public void saveSpeaker(Speakers speaker) {
+    public Speakers saveSpeaker(Speakers speaker) {
+
         speakersRepository.save(speaker);
+        return speaker;
     }
 
     @Override

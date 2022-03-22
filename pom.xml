@@ -116,9 +116,14 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.36</version>
 		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
 
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

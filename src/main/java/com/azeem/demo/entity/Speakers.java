@@ -37,4 +37,8 @@ public class Speakers {
     )
     private List<Events> eventsList;
 
+    public Speakers(String speakerName, String speakerDesignation) {
+        this.speakerName = speakerName;
+        this.speakerDesignation = speakerDesignation;
+    }
 }

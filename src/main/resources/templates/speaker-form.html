@@ -10,6 +10,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
+    <style>
+        .error {
+           color: red;
+        }
+    </style>
+
     <title>Add Speaker</title>
 </head>
 
@@ -30,11 +36,15 @@
 
         <input type="text" th:field="*{speakerName}"
                class="form-control mb-4 col-4" placeholder="Speaker name">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('speakerName')}" th:errors="*{speakerName}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('speakerName')}" th:text="${err}" class="error" />
+        </ul>
 
         <input type="text" th:field="*{speakerDesignation}"
                class="form-control mb-4 col-4" placeholder="Speaker Designation">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('speakerDesignation')}" th:errors="*{speakerDesignation}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('speakerDesignation')}" th:text="${err}" class="error" />
+        </ul>
 
         <button type="submit" class="btn btn-info col-2">Save</button>
 

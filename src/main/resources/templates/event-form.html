@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <title>Save Event</title>
+    <style>
+        .error {
+           color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,11 +35,15 @@
 
         <input type="text" th:field="*{eventName}"
                class="form-control mb-4 col-4" placeholder="Event name">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('eventName')}" th:text="${err}" class="error" />
+        </ul>
 
         <input type="text" th:field="*{eventVenue}"
                class="form-control mb-4 col-4" placeholder="Event venue">
-        <div class="alert alert-danger" th:if="${#fields.hasErrors('eventVenue')}" th:errors="*{eventVenue}"></div>
+        <ul>
+            <li th:each="err : ${#fields.errors('eventVenue')}" th:text="${err}" class="error" />
+        </ul>
 
         <button type="submit" class="btn btn-info col-2">Save</button>
 

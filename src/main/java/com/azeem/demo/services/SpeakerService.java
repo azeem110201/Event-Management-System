@@ -8,7 +8,7 @@ import java.util.List;
 public interface SpeakerService {
     List<Speakers> listSpeakers();
     Speakers getSpeakerById(int id);
-    void saveSpeaker(Speakers speaker);
+    Speakers saveSpeaker(Speakers speaker);
     void deleteSpeaker(int id);
     List<SpeakersDTO> getAllSpeakers();
 }

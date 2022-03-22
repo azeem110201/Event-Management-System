@@ -19,8 +19,12 @@ public class UserServiceImplementation implements UsersServiceInterface{
     @Autowired
     private ModelMapper modelMapper;
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public UserServiceImplementation(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<Users> listUsers() {
@@ -62,9 +66,11 @@ public class UserServiceImplementation implements UsersServiceInterface{
     }
 
     @Override
-    public void saveUser(Users user) {
+    public Users saveUser(Users user) {
 
         userRepository.save(user);
+
+        return user;
     }
 
     @Override

@@ -1,9 +1,7 @@
 package com.azeem.demo.services;
 
 import com.azeem.demo.dto.EventsDTO;
-import com.azeem.demo.dto.SpeakersDTO;
 import com.azeem.demo.entity.Events;
-import com.azeem.demo.entity.Speakers;
 import com.azeem.demo.repository.EventsRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -46,9 +44,11 @@ public class EventsServiceImplementation implements EventsService{
     }
 
     @Override
-    public void saveEvent(Events event) {
+    public Events saveEvent(Events event) {
 
         eventsRepository.save(event);
+
+        return event;
     }
 
     @Override

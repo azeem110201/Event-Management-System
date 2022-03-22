@@ -6,6 +6,8 @@ import com.azeem.demo.entity.Users;
 import com.azeem.demo.repository.MyUserDetails;
 import com.azeem.demo.services.EventsService;
 import com.azeem.demo.services.UsersServiceInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,6 +26,8 @@ import java.util.List;
 public class EventsController {
     private EventsService eventsService;
     private UsersServiceInterface usersService;
+
+    private final static Logger logger = LoggerFactory.getLogger(EventsController.class);
 
     private static int eventIdToSpeaker;
 
@@ -61,7 +66,7 @@ public class EventsController {
     }
 
     @PostMapping("/save")
-    public String saveEmployee(@Valid @ModelAttribute("event") Events event,
+    public String saveEvent(@Valid @ModelAttribute("event") Events event,
                                BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
@@ -86,7 +91,7 @@ public class EventsController {
 
     @PostMapping("/register")
     public String showFormRegister(@RequestParam("eventId") int theId,
-                                    Model theModel) {
+                                   Model theModel, RedirectAttributes redirAttrs) {
 
         Events theEvent = eventsService.getEventById(theId);
         System.out.println(theEvent.getEventName());
@@ -113,17 +118,20 @@ public class EventsController {
                 eventsService.saveEvent(theEvent);
             }
             else{
-                String alreadyRegistered = username + " has already registered to this event";
+                logger.warn(">>>>>> user already registered in the database!!");
 
-                theModel.addAttribute("event", alreadyRegistered);
-
-                return "already-register-form";
+                redirAttrs.addFlashAttribute("error", username + " has already registered to this event");
+                return "redirect:/api/events/list";
             }
         }
 
+        logger.debug(">>>>>>> user registered in the database");
+
         theModel.addAttribute("event", theEvent);
 
-        return "register-form";
+        redirAttrs.addFlashAttribute("success", "Registered for the event");
+
+        return "redirect:/api/events/list";
     }
 
     @PostMapping("/delete")
