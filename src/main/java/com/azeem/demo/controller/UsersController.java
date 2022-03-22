@@ -28,7 +28,7 @@ public class UsersController {
     private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
 
     @Autowired
-    public UsersController(UsersServiceInterface usersService, RoleService roleService){
+    public UsersController(UsersServiceInterface usersService){
 
         this.roleService = roleService;
         this.usersService = usersService;
