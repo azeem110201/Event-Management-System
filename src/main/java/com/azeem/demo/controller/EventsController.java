@@ -27,6 +27,7 @@ public class EventsController {
     private EventsService eventsService;
     private UsersServiceInterface usersService;
 
+    // logger added
     private static final Logger logger = LoggerFactory.getLogger(EventsController.class);
 
     private static int eventIdToSpeaker;
