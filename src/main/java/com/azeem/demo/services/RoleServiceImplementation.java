@@ -28,17 +28,7 @@ public class RoleServiceImplementation implements RoleService {
     public Roles getRoleById(int id) {
         Optional<Roles> result = Optional.of(roleRepository.getById(id));
 
-        Roles theRole = null;
-
-        if (result.isPresent()) {
-            theRole = result.get();
-        }
-        else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find role id - " + id);
-        }
-
-        return theRole;
+        return result.get();
     }
 
     @Override

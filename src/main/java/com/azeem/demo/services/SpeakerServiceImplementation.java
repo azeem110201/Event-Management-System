@@ -30,17 +30,7 @@ public class SpeakerServiceImplementation implements SpeakerService{
     public Speakers getSpeakerById(int id) {
         Optional<Speakers> result = Optional.of(speakersRepository.getById(id));
 
-        Speakers theSpeaker = null;
-
-        if (result.isPresent()) {
-            theSpeaker = result.get();
-        }
-        else {
-            // we didn't find the speaker
-            throw new RuntimeException("Did not find speaker id - " + id);
-        }
-
-        return theSpeaker;
+        return result.get();
     }
 
     @Override

@@ -33,34 +33,14 @@ public class UserServiceImplementation implements UsersServiceInterface{
     public Users getUserById(int id) {
         Optional<Users> result = Optional.of(userRepository.getById(id));
 
-        Users theUser = null;
-
-        if (result.isPresent()) {
-            theUser = result.get();
-        }
-        else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find user id - " + id);
-        }
-
-        return theUser;
+        return result.get();
     }
 
     @Override
     public Users getUserByUsername(String username) {
         Optional<Users> result = Optional.of(userRepository.getUserByUsername(username));
 
-        Users theUser = null;
-
-        if (result.isPresent()) {
-            theUser = result.get();
-        }
-        else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find username - " + username);
-        }
-
-        return theUser;
+        return result.get();
     }
 
     @Override
