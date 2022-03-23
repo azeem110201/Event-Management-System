@@ -29,11 +29,11 @@
 <!--			**/repository/**,-->
 <!--			**/security/**-->
 <!--		</sonar.exclusions>-->
-		<sonar.exclusions>
-			**/com/azeem/demo/aop/**,
-			**/com/azeem/demo/repository/**
-			**/com/azeem/demo/security/**
-		</sonar.exclusions>
+<!--		<sonar.exclusions>-->
+<!--			**/com/azeem/demo/aop/**,-->
+<!--			**/com/azeem/demo/repository/**-->
+<!--			**/com/azeem/demo/security/**-->
+<!--		</sonar.exclusions>-->
 	</properties>
 	<dependencies>
 		<dependency>
