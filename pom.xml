@@ -30,7 +30,6 @@
 <!--			**/security/**-->
 <!--		</sonar.exclusions>-->
 		<sonar.exclusions>
-			**/com/azeem/demo/entity/**,
 			**/com/azeem/demo/aop/**,
 			**/com/azeem/demo/repository/**
 			**/com/azeem/demo/security/**
