@@ -1,8 +1,6 @@
 package com.azeem.demo.services;
 
-import com.azeem.demo.entity.Events;
 import com.azeem.demo.entity.Speakers;
-import com.azeem.demo.repository.EventsRepository;
 import com.azeem.demo.repository.SpeakersRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +30,16 @@ class SpeakerServiceImplementationTest {
                 .of(new Speakers("XYZ", "Metaverse expert")).collect(Collectors.toList()));
 
         assertEquals(1, speakerService.listSpeakers().size());
+    }
+
+    @Test
+    void getSpeakerById(){
+        Speakers speakers = new Speakers("XYZ", "Hacker");
+        when(speakersRepository.getById(1)).thenReturn(speakers);
+
+        Speakers speaker = speakerService.getSpeakerById(1);
+        assertEquals("XYZ", speaker.getSpeakerName());
+        assertEquals("Hacker", speaker.getSpeakerDesignation());
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.azeem.demo.services;
 
+import com.azeem.demo.entity.Events;
 import com.azeem.demo.entity.Roles;
 import com.azeem.demo.entity.Users;
 import com.azeem.demo.repository.RoleRepository;
@@ -36,6 +37,43 @@ class UserServiceImplementationTest {
                 .of(new Users("jack","test123","micheal","jackson",22,"M","IT")).collect(Collectors.toList()));
 
         assertEquals(1, usersService.listUsers().size());
+    }
+
+    @Test
+    void getUserById(){
+        Users users = new Users("jack","test123","Micheal","Jackson", 22, "M", "IT");
+        users.addRole(roleRepository.getById(2));
+        users.addEvent(new Events("python language", "XYZ"));
+
+        when(userRepository.getById(1)).thenReturn(users);
+
+        Users user = usersService.getUserById(1);
+        assertEquals("jack", user.getUsername());
+        assertEquals("Micheal", user.getFirstName());
+        assertEquals("Jackson", user.getLastName());
+        assertEquals(22, user.getAge());
+        assertEquals("M", user.getGender());
+        assertEquals("IT", user.getBranch());
+        assertEquals(1, user.getEventsList().size());
+    }
+
+    @Test
+    void getUserByUsername(){
+        Users users = new Users("jack","test123","Micheal","Jackson", 22, "M", "IT");
+        users.addRole(roleRepository.getById(2));
+        users.addEvent(new Events("python language", "XYZ"));
+        users.addEvent(new Events("java language", "ABC"));
+
+        when(userRepository.getUserByUsername("jack")).thenReturn(users);
+
+        Users user = usersService.getUserByUsername("jack");
+        assertEquals(users.getId(), user.getId());
+        assertEquals("Micheal", user.getFirstName());
+        assertEquals("Jackson", user.getLastName());
+        assertEquals(22, user.getAge());
+        assertEquals("M", user.getGender());
+        assertEquals("IT", user.getBranch());
+        assertEquals(2, user.getEventsList().size());
     }
 
     @Test
