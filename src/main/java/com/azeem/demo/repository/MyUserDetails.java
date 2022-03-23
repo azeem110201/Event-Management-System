@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 public class MyUserDetails implements UserDetails {
-    private Users user;
+    private transient Users user;
 
     public MyUserDetails(Users user) {
 
