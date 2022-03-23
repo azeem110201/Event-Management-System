@@ -57,4 +57,12 @@ class SpeakerServiceImplementationTest {
         speakerService.deleteSpeaker(speakers.getId());
         verify(speakersRepository, times(1)).deleteById(speakers.getId());
     }
+
+    @Test
+    void getAllSpeakers(){
+        when(speakersRepository.findAll()).thenReturn(Stream
+                .of(new Speakers("XYZ", "Metaverse expert")).collect(Collectors.toList()));
+
+        assertEquals(1, speakerService.listSpeakers().size());
+    }
 }

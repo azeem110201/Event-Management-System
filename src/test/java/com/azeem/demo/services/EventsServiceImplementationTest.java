@@ -67,4 +67,12 @@ class EventsServiceImplementationTest {
         eventsService.deleteEvent(event.getId());
         verify(eventsRepository, times(1)).deleteById(event.getId());
     }
+
+    @Test
+    void getAllEvents(){
+        when(eventsRepository.findAll()).thenReturn(Stream
+                .of(new Events("Introduction to programming", "Lab 2")).collect(Collectors.toList()));
+
+        assertEquals(1, eventsService.listEvents().size());
+    }
 }

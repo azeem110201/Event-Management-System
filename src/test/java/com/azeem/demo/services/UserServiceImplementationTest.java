@@ -1,5 +1,7 @@
 package com.azeem.demo.services;
 
+import com.azeem.demo.dto.EventsDTO;
+import com.azeem.demo.dto.UsersDTO;
 import com.azeem.demo.entity.Events;
 import com.azeem.demo.entity.Roles;
 import com.azeem.demo.entity.Users;
@@ -12,6 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -95,5 +101,13 @@ class UserServiceImplementationTest {
 
         usersService.deleteUser(users.getId());
         verify(userRepository, times(1)).deleteById(users.getId());
+    }
+
+    @Test
+    void getAllUsers(){
+        when(userRepository.findAll()).thenReturn(Stream
+                .of(new Users("jack","test123","micheal","jackson",22,"M","IT")).collect(Collectors.toList()));
+
+        assertEquals(1, usersService.listUsers().size());
     }
 }

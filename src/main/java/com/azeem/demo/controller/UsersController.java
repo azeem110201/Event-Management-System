@@ -22,6 +22,8 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UsersController {
     private UsersServiceInterface usersService;
+
+    @Autowired
     private RoleService roleService;
 
     // logger added
@@ -30,7 +32,6 @@ public class UsersController {
     @Autowired
     public UsersController(UsersServiceInterface usersService){
 
-        this.roleService = roleService;
         this.usersService = usersService;
     }
 
