@@ -13,6 +13,7 @@ public class DeletingAOP {
 
     @Before("execution(* com.azeem.demo.services.*.delete*(..))")
     public void executeBeforeTheDeleteOperationIsPerformed(){
+
         logger.info("\\>>>" + "\"Deleting from database");
     }
 }

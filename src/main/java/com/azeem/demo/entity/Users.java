@@ -26,8 +26,6 @@ public class Users {
     private int id;
 
     @Column(name = "username")
-    @NotNull(message="is required")
-    @Size(min=3, message="should have 3 or more characters")
     private String username;
 
     @Column(name = "password")

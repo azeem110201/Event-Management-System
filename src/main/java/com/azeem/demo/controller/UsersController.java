@@ -94,6 +94,25 @@ public class UsersController {
         return "redirect:/api/users/list";
     }
 
+    @PostMapping("/saveUpdated")
+    public String saveUpdatedUser(@Valid @ModelAttribute("user") Users users,
+                                  BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "user-form-update";
+        }
+
+        Roles userRole = roleService.getRoleById(2);
+        users.addRole(userRole);
+
+        BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+        users.setPassword(bcrypt.encode(users.getPassword()));
+
+        usersService.saveUser(users);
+
+        return "redirect:/api/users/list";
+
+    }
+
     @PostMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("userId") int theId,
                                     Model theModel) {
@@ -102,10 +121,10 @@ public class UsersController {
 
         theModel.addAttribute("user", theUser);
 
-        return "user-form";
+        return "user-form-update";
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     public String delete(@RequestParam("userId") int theId) {
 
         Users user = usersService.getUserById(theId);

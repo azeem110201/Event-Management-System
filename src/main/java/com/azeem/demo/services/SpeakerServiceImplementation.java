@@ -42,6 +42,7 @@ public class SpeakerServiceImplementation implements SpeakerService{
 
     @Override
     public void deleteSpeaker(int id) {
+
         speakersRepository.deleteById(id);
     }
 

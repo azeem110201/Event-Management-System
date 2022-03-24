@@ -37,6 +37,7 @@ class EventsServiceImplementationTest {
                 .of(new Events("Introduction to programming", "Lab 2")).collect(Collectors.toList()));
 
         assertEquals(1, eventsService.listEvents().size());
+        ;
     }
 
     @Test
@@ -57,7 +58,6 @@ class EventsServiceImplementationTest {
         event.addSpeaker(new Speakers("XYXZ", "Metaverse expert"));
 
         when(eventsRepository.save(event)).thenReturn(event);
-
         assertEquals(event, eventsService.saveEvent(event));
     }
 
