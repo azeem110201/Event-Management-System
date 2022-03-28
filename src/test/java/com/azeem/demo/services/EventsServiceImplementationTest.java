@@ -1,5 +1,6 @@
 package com.azeem.demo.services;
 
+import com.azeem.demo.dto.EventsDTO;
 import com.azeem.demo.entity.Events;
 import static org.mockito.Mockito.verify;
 
@@ -8,6 +9,8 @@ import com.azeem.demo.repository.EventsRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -30,6 +33,9 @@ class EventsServiceImplementationTest {
 
     @MockBean
     private EventsRepository eventsRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Test
     void listEvents() {
@@ -66,13 +72,5 @@ class EventsServiceImplementationTest {
         Events event = new Events("Introduction to programming", "Lab 2");
         eventsService.deleteEvent(event.getId());
         verify(eventsRepository, times(1)).deleteById(event.getId());
-    }
-
-    @Test
-    void getAllEvents(){
-        when(eventsRepository.findAll()).thenReturn(Stream
-                .of(new Events("Introduction to programming", "Lab 2")).collect(Collectors.toList()));
-
-        assertEquals(1, eventsService.listEvents().size());
     }
 }

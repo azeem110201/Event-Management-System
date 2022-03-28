@@ -1,16 +1,13 @@
 package com.azeem.demo.services;
 
-import com.azeem.demo.dto.SpeakersDTO;
 import com.azeem.demo.entity.Speakers;
 import com.azeem.demo.repository.SpeakersRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class SpeakerServiceImplementation implements SpeakerService{
@@ -44,21 +41,5 @@ public class SpeakerServiceImplementation implements SpeakerService{
     public void deleteSpeaker(int id) {
 
         speakersRepository.deleteById(id);
-    }
-
-    @Override
-    public List<SpeakersDTO> getAllSpeakers() {
-        return speakersRepository.findAll()
-                .stream()
-                .map(this::convertEntityToDto)
-                .collect(Collectors.toList());
-    }
-
-    private SpeakersDTO convertEntityToDto(Speakers speakers){
-        modelMapper.getConfiguration()
-                .setMatchingStrategy(MatchingStrategies.LOOSE);
-        SpeakersDTO speakersDTO;
-        speakersDTO = modelMapper.map(speakers, SpeakersDTO.class);
-        return speakersDTO;
     }
 }

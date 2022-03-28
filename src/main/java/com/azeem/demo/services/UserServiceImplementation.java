@@ -1,16 +1,13 @@
 package com.azeem.demo.services;
 
-import com.azeem.demo.dto.UsersDTO;
 import com.azeem.demo.entity.Users;
 import com.azeem.demo.repository.UserRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImplementation implements UsersServiceInterface{
@@ -55,22 +52,5 @@ public class UserServiceImplementation implements UsersServiceInterface{
     public void deleteUser(int id) {
 
         userRepository.deleteById(id);
-    }
-
-    @Override
-    public List<UsersDTO> getAllUsers(){
-        return userRepository.findAll()
-                .stream()
-                .map(this::convertEntityToDto)
-                .collect(Collectors.toList());
-
-    }
-
-    private UsersDTO convertEntityToDto(Users user){
-        modelMapper.getConfiguration()
-                .setMatchingStrategy(MatchingStrategies.LOOSE);
-        UsersDTO usersDTO;
-        usersDTO = modelMapper.map(user, UsersDTO.class);
-        return usersDTO;
     }
 }

@@ -1,6 +1,5 @@
 package com.azeem.demo.controller;
 
-import com.azeem.demo.dto.EventsDTO;
 import com.azeem.demo.entity.Events;
 import com.azeem.demo.entity.Users;
 import com.azeem.demo.repository.MyUserDetails;
@@ -49,7 +48,7 @@ public class EventsController {
 
     @GetMapping("/list")
     public String listEvents(Model model){
-        List<EventsDTO> events = eventsService.getAllEvents();
+        List<Events> events = eventsService.listEvents();
 
         model.addAttribute("event", events);
 

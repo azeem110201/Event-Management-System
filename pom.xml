@@ -22,18 +22,17 @@
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.sources>src/main/java</sonar.sources>
 		<sonar.language>java</sonar.language>
-<!--		<sonar.exclusions>-->
-<!--			**/entity/**,-->
-<!--			**/aop/**,-->
-<!--			**/dto/**,-->
-<!--			**/repository/**,-->
-<!--			**/security/**-->
-<!--		</sonar.exclusions>-->
-<!--		<sonar.exclusions>-->
-<!--			**/com/azeem/demo/aop/**,-->
-<!--			**/com/azeem/demo/repository/**-->
-<!--			**/com/azeem/demo/security/**-->
-<!--		</sonar.exclusions>-->
+		<sonar.exclusions>
+			**/com/azeem/demo/aop/**,
+			**/com/azeem/demo/repository/**,
+			**/com/azeem/demo/security/**,
+			**/com/azeem/demo/controller/**,
+			**/com/azeem/demo/dto/**,
+			**/com/azeem/demo/entity/**,
+			**/com/azeem/demo/DemoApplication**,
+			**/com/azeem/demo/services/RoleServiceImplementation**,
+			**/com/azeem/demo/services/UserDetailsServiceImplementation**
+		</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>

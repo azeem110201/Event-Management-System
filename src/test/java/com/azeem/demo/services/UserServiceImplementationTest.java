@@ -102,12 +102,4 @@ class UserServiceImplementationTest {
         usersService.deleteUser(users.getId());
         verify(userRepository, times(1)).deleteById(users.getId());
     }
-
-    @Test
-    void getAllUsers(){
-        when(userRepository.findAll()).thenReturn(Stream
-                .of(new Users("jack","test123","micheal","jackson",22,"M","IT")).collect(Collectors.toList()));
-
-        assertEquals(1, usersService.listUsers().size());
-    }
 }
